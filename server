@@ -1,0 +1,23 @@
+#!/usr/bin/env php
+
+use PHPServer\Server;
+use PHPServer\Request;
+use PHPServer\Response; 
+
+array_shift($argv);
+
+if(empty($argv)){
+    $port=80;
+}else{
+    $port=array_shift($argv)
+}
+
+require 'vendor/autoload.php';
+$server = new server('127.0.0.1',$port);
+
+$server->listen(
+    function(Request $request){
+        return new Response('Hello Imalka');
+    }
+);
+
